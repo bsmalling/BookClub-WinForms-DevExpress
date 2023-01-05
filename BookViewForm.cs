@@ -42,7 +42,7 @@ namespace BookClub
                 CurrentBook.ASIN : "-";
             labelControlPublishedValue.Text = CurrentBook.Published.ToString("MMMM d, yyyy");
 
-            if (CurrentBook.Thumbnail.ImageObj != null)
+            if (CurrentBook.Thumbnail?.ImageObj != null)
                 pictureEditCover.Image = CurrentBook.Thumbnail.ImageObj;
 
             gridControlComments.DataSource = CurrentBook.Comments;
