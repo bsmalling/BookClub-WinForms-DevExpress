@@ -32,8 +32,8 @@ namespace BookClub
             var username = textBoxUsername.Text;
             var password = textBoxPassword.Text;
 
-            username = "brad"; // TODO: Remove me!
-            password = "asdf"; // TODO: Remove me!
+            // username = "brad"; // TODO: Remove me! Is for speeding up debugging.
+            // password = "asdf"; // TODO: Remove me! Is for speeding up debugging.
 
             using (SqlConnection connection = Program.GetAppConnection())
             {
