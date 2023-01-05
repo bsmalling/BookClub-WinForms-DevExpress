@@ -36,10 +36,8 @@ namespace BookClub
             labelControlAuthor.Text = Util.Ellipses(80, "by " + CurrentBook.Author);
             labelControlPagesValue.Text = (CurrentBook.Pages != null) ?
                 string.Format("{0:N0}", CurrentBook.Pages) : "-";
-            labelControlISBNValue.Text = (CurrentBook.ISBN != null) ?
-                CurrentBook.ISBN : "-";
-            labelControlASINValue.Text = (CurrentBook.ASIN != null) ?
-                CurrentBook.ASIN : "-";
+            labelControlISBNValue.Text = CurrentBook.ISBN ?? "-";
+            labelControlASINValue.Text = CurrentBook.ASIN ?? "-";
             labelControlPublishedValue.Text = CurrentBook.Published.ToString("MMMM d, yyyy");
 
             if (CurrentBook.Thumbnail?.ImageObj != null)
