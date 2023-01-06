@@ -166,8 +166,8 @@ namespace BookClub.Services
         {
             if (force || (book.ThumbnailId.HasValue && book.Thumbnail == null))
             {
-                var thumbnailService = new ThumbnailService(m_connection);
-                book.Thumbnail = thumbnailService.Read(book.ThumbnailId.Value);
+                using (var thumbnailService = new ThumbnailService(m_connection))
+                    book.Thumbnail = thumbnailService.Read(book.ThumbnailId.Value);
             }
         }
 

@@ -38,17 +38,19 @@ namespace BookClub
             using (SqlConnection connection = Program.GetAppConnection())
             {
                 connection.Open();
-                var userService = new UserService(connection);
-                var unverifiedUser = userService.GetByUsername(username);
-                if (unverifiedUser != null && unverifiedUser.HasRole(UserRole.User))
+                using (var userService = new UserService(connection))
                 {
-                    if (unverifiedUser.IsCorrectPassword(username, password))
+                    var unverifiedUser = userService.GetByUsername(username);
+                    if (unverifiedUser != null && unverifiedUser.HasRole(UserRole.User))
                     {
-                        labelInvalidLogin.Visible = false;
-                        DialogResult = DialogResult.OK;
-                        CurrentUser = unverifiedUser;
-                        Close();
-                        return;
+                        if (unverifiedUser.IsCorrectPassword(username, password))
+                        {
+                            labelInvalidLogin.Visible = false;
+                            DialogResult = DialogResult.OK;
+                            CurrentUser = unverifiedUser;
+                            Close();
+                            return;
+                        }
                     }
                 }
             }

@@ -952,6 +952,7 @@
             this.Controls.Add(this.navBarControlMain);
             this.Name = "MainForm";
             this.Text = "Bookclub";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewMeetingRecs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlMeetings)).EndInit();

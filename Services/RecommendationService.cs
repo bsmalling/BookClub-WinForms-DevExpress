@@ -183,18 +183,18 @@ namespace BookClub.Services
         {
             if (force || recommendation.Meeting == null)
             {
-                var meetingService = new MeetingService(m_connection);
-                recommendation.Meeting = meetingService.Read(recommendation.MeetingId);
+                using (var meetingService = new MeetingService(m_connection))
+                    recommendation.Meeting = meetingService.Read(recommendation.MeetingId);
             }
             if (force || recommendation.Book == null)
             {
-                var bookService = new BookService(m_connection);
-                recommendation.Book = bookService.Read(recommendation.BookId);
+                using (var bookService = new BookService(m_connection))
+                    recommendation.Book = bookService.Read(recommendation.BookId);
             }
             if (force || recommendation.User == null)
             {
-                var userService = new UserService(m_connection);
-                recommendation.User = userService.Read(recommendation.UserId);
+                using (var userService = new UserService(m_connection))
+                    recommendation.User = userService.Read(recommendation.UserId);
             }
         }
 

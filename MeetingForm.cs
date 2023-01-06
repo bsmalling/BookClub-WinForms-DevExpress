@@ -61,11 +61,11 @@ namespace BookClub
             {
                 connection.Open();
 
-                var meetingService = new MeetingService(connection);
-                if (CurrentMeeting.Id == -1)
-                    meetingService.Create(CurrentMeeting);
-                else
-                    meetingService.Update(CurrentMeeting);
+                using (var meetingService = new MeetingService(connection))
+                    if (CurrentMeeting.Id == -1)
+                        meetingService.Create(CurrentMeeting);
+                    else
+                        meetingService.Update(CurrentMeeting);
             }
             DialogResult = DialogResult.OK;
             Close();

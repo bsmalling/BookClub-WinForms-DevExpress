@@ -25,8 +25,8 @@ namespace BookClub.Models
                 using (SqlConnection connection = Program.GetAppConnection())
                 {
                     connection.Open();
-                    var commentService = new CommentService(connection);
-                    m_comments = commentService.ReadByParent(parentType, parentId);
+                    using (var commentService = new CommentService(connection))
+                        m_comments = commentService.ReadByParent(parentType, parentId);
                 }
             }
             return m_comments;
@@ -37,11 +37,11 @@ namespace BookClub.Models
             using (SqlConnection connection = Program.GetAppConnection())
             {
                 connection.Open();
-                var commentService = new CommentService(connection);
-                if (m_comments == null || m_comments.Count == 0)
-                    commentService.DeleteByParent(parentType, parentId);
-                else
-                    commentService.UpdateAll(parentType, parentId, m_comments);
+                using (var commentService = new CommentService(connection))
+                    if (m_comments == null || m_comments.Count == 0)
+                        commentService.DeleteByParent(parentType, parentId);
+                    else
+                        commentService.UpdateAll(parentType, parentId, m_comments);
             }
         }
 

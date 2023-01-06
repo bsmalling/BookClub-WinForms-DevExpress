@@ -112,8 +112,8 @@ namespace BookClub.Models
                 using (SqlConnection connection = Program.GetAppConnection())
                 {
                     connection.Open();
-                    var recommendationService = new RecommendationService(connection);
-                    m_recommendations = recommendationService.ReadByMeeting(Id);
+                    using (var recommendationService = new RecommendationService(connection))
+                        m_recommendations = recommendationService.ReadByMeeting(Id);
                 }
             }
             return m_recommendations;
@@ -124,11 +124,11 @@ namespace BookClub.Models
             using (SqlConnection connection = Program.GetAppConnection())
             {
                 connection.Open();
-                var recommendationService = new RecommendationService(connection);
-                if (m_recommendations == null || m_recommendations.Count == 0)
-                    recommendationService.DeleteByMeeting(Id);
-                else
-                    recommendationService.UpdateAll(Id, m_recommendations);
+                using (var recommendationService = new RecommendationService(connection))
+                    if (m_recommendations == null || m_recommendations.Count == 0)
+                        recommendationService.DeleteByMeeting(Id);
+                    else
+                        recommendationService.UpdateAll(Id, m_recommendations);
             }
         }
 

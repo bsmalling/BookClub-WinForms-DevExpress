@@ -3,6 +3,7 @@ using BookClub.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 namespace BookClub.Common
 {
 
-    public class ModelCache
+    public class ModelCache : IDisposable
     {
 
         public List<Book> Books { get; private set; }
@@ -32,6 +33,25 @@ namespace BookClub.Common
 
             var userService = new UserService(connection);
             Users = userService.SelectAll();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // free managed resources
+                Books = null;
+                Locations = null;
+                Meetings = null;
+                Users = null;
+            }
+            // free native resources
         }
 
     }

@@ -62,6 +62,12 @@ namespace BookClub
             UpdateNextMeeting();
         }
 
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Cache = null;
+            CurrentUser = null;
+        }
+
         private void UpdateNextMeeting()
         {
             var meeting = GetNextMeeting(Cache.Meetings);
@@ -116,8 +122,8 @@ namespace BookClub
         //    {
         //        var thumbnail = new Thumbnail(-1);
         //        thumbnail.ImageObj = Image.FromStream(bitmapStream);
-        //        var thumbnailService = new ThumbnailService(connection);
-        //        return thumbnailService.Create(thumbnail);
+        //        using (var thumbnailService = new ThumbnailService(connection))
+        //            return thumbnailService.Create(thumbnail);
         //    }
         //}
 
@@ -183,11 +189,12 @@ namespace BookClub
                 {
                     connection.Open();
                     var books = gridControlBooks.DataSource as BindingList<Book>;
-                    var bookService = new BookService(connection);
-
-                    var list = books.ToList<Book>();
-                    bookService.UpdateAll(list);
-                    gridControlUsers.DataSource = new BindingList<Book>(list);
+                    using (var bookService = new BookService(connection))
+                    {
+                        var list = books.ToList<Book>();
+                        bookService.UpdateAll(list);
+                        gridControlUsers.DataSource = new BindingList<Book>(list);
+                    }
                 }
                 ((GridTag)gridControlBooks.Tag).Updated = false;
             }
@@ -239,11 +246,12 @@ namespace BookClub
                 {
                     connection.Open();
                     var locations = gridControlLocations.DataSource as BindingList<Location>;
-                    var locationService = new LocationService(connection);
-
-                    var list = locations.ToList<Location>();
-                    locationService.UpdateAll(list);
-                    gridControlLocations.DataSource = new BindingList<Location>(list);
+                    using (var locationService = new LocationService(connection))
+                    {
+                        var list = locations.ToList<Location>();
+                        locationService.UpdateAll(list);
+                        gridControlLocations.DataSource = new BindingList<Location>(list);
+                    }
                 }
                 ((GridTag)gridControlLocations.Tag).Updated = false;
             }
@@ -285,11 +293,12 @@ namespace BookClub
                 {
                     connection.Open();
                     var users = gridControlUsers.DataSource as BindingList<User>;
-                    var userService = new UserService(connection);
-
-                    var list = users.ToList<User>();
-                    userService.UpdateAll(list);
-                    gridControlUsers.DataSource = new BindingList<User>(list);
+                    using (var userService = new UserService(connection))
+                    {
+                        var list = users.ToList<User>();
+                        userService.UpdateAll(list);
+                        gridControlUsers.DataSource = new BindingList<User>(list);
+                    }
                 }
                 ((GridTag)gridControlUsers.Tag).Updated = false;
             }
@@ -352,8 +361,8 @@ namespace BookClub
                 {
                     connection.Open();
 
-                    var userService = new UserService(connection);
-                    userService.Delete(user.Id);
+                    using (var userService = new UserService(connection))
+                        userService.Delete(user.Id);
                 }
                 gridViewUsers.DeleteSelectedRows();
                 Cache.Users.Remove(user);
@@ -421,11 +430,12 @@ namespace BookClub
                 {
                     connection.Open();
                     var meetings = gridControlMeetings.DataSource as BindingList<Meeting>;
-                    var meetingService = new MeetingService(connection);
-
-                    var list = meetings.ToList<Meeting>();
-                    meetingService.UpdateAll(list);
-                    gridControlMeetings.DataSource = new BindingList<Meeting>(list);
+                    using (var meetingService = new MeetingService(connection))
+                    {
+                        var list = meetings.ToList<Meeting>();
+                        meetingService.UpdateAll(list);
+                        gridControlMeetings.DataSource = new BindingList<Meeting>(list);
+                    }
                 }
                 ((GridTag)gridControlMeetings.Tag).Updated = false;
             }
@@ -522,8 +532,8 @@ namespace BookClub
                 {
                     connection.Open();
 
-                    var meetingService = new MeetingService(connection);
-                    meetingService.Delete(meeting.Id);
+                    using (var meetingService = new MeetingService(connection))
+                        meetingService.Delete(meeting.Id);
                 }
                 gridViewMeetings.DeleteSelectedRows();
                 Cache.Meetings.Remove(meeting);

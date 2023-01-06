@@ -151,18 +151,18 @@ namespace BookClub.Services
         {
             if (force || meeting.Book == null)
             {
-                var bookService = new BookService(m_connection);
-                meeting.Book = bookService.Read(meeting.BookId);
+                using (var bookService = new BookService(m_connection))
+                    meeting.Book = bookService.Read(meeting.BookId);
             }
             if (force || meeting.Host == null)
             {
-                var userService = new UserService(m_connection);
-                meeting.Host = userService.Read(meeting.HostId);
+                using (var userService = new UserService(m_connection))
+                    meeting.Host = userService.Read(meeting.HostId);
             }
             if (force || meeting.Location == null)
             {
-                var locationService = new LocationService(m_connection);
-                meeting.Location = locationService.Read(meeting.LocationId);
+                using (var locationService = new LocationService(m_connection))
+                    meeting.Location = locationService.Read(meeting.LocationId);
             }
         }
 

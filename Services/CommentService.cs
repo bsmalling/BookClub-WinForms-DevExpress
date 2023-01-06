@@ -191,8 +191,8 @@ namespace BookClub.Services
         {
             if (force || comment.User == null)
             {
-                var userService = new UserService(m_connection);
-                comment.User = userService.Read(comment.UserId);
+                using (var userService = new UserService(m_connection))
+                    comment.User = userService.Read(comment.UserId);
             }
         }
 
