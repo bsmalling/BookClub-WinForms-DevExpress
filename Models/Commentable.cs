@@ -51,6 +51,11 @@ namespace BookClub.Models
             m_comments.Add(comment);
         }
 
+        public void DeleteComment(Comment comment)
+        {
+            comment.Status = ChangeStatus.Deleted;
+        }
+
     }
 
 }

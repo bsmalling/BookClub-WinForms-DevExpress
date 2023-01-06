@@ -73,21 +73,25 @@ namespace BookClub
 
         private void simpleButtonNewBook_Click(object sender, EventArgs e)
         {
-            BookForm form = new BookForm();
-            form.Text = "Add a new Book";
-            if (form.ShowDialog(this) == DialogResult.OK)
+            using (BookForm form = new BookForm())
             {
-                // TODO: To be completed...
+                form.Text = "Add a new Book";
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    // TODO: To be completed...
+                }
             }
         }
 
         private void simpleButtonNewLocation_Click(object sender, EventArgs e)
         {
-            LocationForm form = new LocationForm();
-            form.Text = "Add a new Location";
-            if (form.ShowDialog(this) == DialogResult.OK)
+            using (LocationForm form = new LocationForm())
             {
-                // TODO: To be completed...
+                form.Text = "Add a new Location";
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    // TODO: To be completed...
+                }
             }
         }
 

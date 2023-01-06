@@ -75,6 +75,7 @@
             this.simpleButtonAddNewBook.Size = new System.Drawing.Size(120, 23);
             this.simpleButtonAddNewBook.TabIndex = 1;
             this.simpleButtonAddNewBook.Text = "Add a new Book...";
+            this.simpleButtonAddNewBook.Click += new System.EventHandler(this.simpleButtonAddNewBook_Click);
             // 
             // labelControl2
             // 

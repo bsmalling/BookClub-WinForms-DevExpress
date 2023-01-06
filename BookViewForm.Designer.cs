@@ -227,6 +227,8 @@
             this.pictureEditCover.Name = "pictureEditCover";
             this.pictureEditCover.Properties.AllowFocused = false;
             this.pictureEditCover.Properties.AllowZoom = DevExpress.Utils.DefaultBoolean.True;
+            this.pictureEditCover.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pictureEditCover.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEditCover.Properties.ReadOnly = true;
             this.pictureEditCover.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEditCover.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;

@@ -79,7 +79,7 @@ namespace BookClub.Models
 
         public override string ToString()
         {
-            return Address1;
+            return Address1 + "; " + City + ", " + State;
         }
 
         ///<summary>

@@ -46,6 +46,18 @@ namespace BookClub
             }
         }
 
+        private void simpleButtonAddNewBook_Click(object sender, EventArgs e)
+        {
+            using (BookForm form = new BookForm())
+            {
+                form.Text = "Add a new Book";
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    // TODO: To be completed...
+                }
+            }
+        }
+
     }
 
 }

@@ -8,17 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using BookClub.Common;
 using BookClub.Models;
 using BookClub.Services;
 using System.Data.SqlClient;
 using System.IO;
-using BookClub.Properties;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraGrid.Views.Grid;
-using System.Drawing.Text;
-using DevExpress.XtraNavBar;
 
 namespace BookClub
 {
@@ -38,7 +34,7 @@ namespace BookClub
             {
                 connection.Open();
 
-                //var thumbnail = ImageFileToThumbnail(connection, "TeamOfRivals.jpg");
+                // var thumbnail = ImageFileToThumbnail(connection, "BloodMeridian.jpg");
 
                 Cache = new ModelCache(connection);
                 gridControlBooks.DataSource = new BindingList<Book>(Cache.Books);
@@ -53,6 +49,17 @@ namespace BookClub
                 navBarItemSettings.Enabled = true;
             }
         }
+
+        //private Thumbnail ImageFileToThumbnail(SqlConnection connection, string filename)
+        //{
+        //    using (Stream bitmapStream = System.IO.File.Open("Images\\" + filename, System.IO.FileMode.Open))
+        //    {
+        //        var thumbnail = new Thumbnail(-1);
+        //        thumbnail.ImageObj = Image.FromStream(bitmapStream);
+        //        using (var thumbnailService = new ThumbnailService(connection))
+        //            return thumbnailService.Create(thumbnail);
+        //    }
+        //}
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -87,7 +94,7 @@ namespace BookClub
                 labelControlAddress1.Text = meeting.Location.Address1;
 
                 var cityStateZip = meeting.Location.City + ", " +
-                        meeting.Location.State + "  " + meeting.Location.Zip;
+                    meeting.Location.State + "  " + (meeting.Location.Zip ?? String.Empty);
                 if (meeting.Location.Address2 == null)
                 {
                     labelControlAddress2.Text = cityStateZip;
@@ -104,6 +111,7 @@ namespace BookClub
         private Meeting GetNextMeeting(List<Meeting> meetings)
         {
             Meeting nextMeeting = null;
+            var nowDate = DateTime.Now;
             var minDate = DateTime.MaxValue;
             foreach (var meeting in meetings)
             {
@@ -115,17 +123,6 @@ namespace BookClub
             }
             return nextMeeting;
         }
-
-        //private Thumbnail ImageFileToThumbnail(SqlConnection connection, string filename)
-        //{
-        //    using (Stream bitmapStream = System.IO.File.Open("Images/" + filename, System.IO.FileMode.Open))
-        //    {
-        //        var thumbnail = new Thumbnail(-1);
-        //        thumbnail.ImageObj = Image.FromStream(bitmapStream);
-        //        using (var thumbnailService = new ThumbnailService(connection))
-        //            return thumbnailService.Create(thumbnail);
-        //    }
-        //}
 
         private void navBarControlMain_LinkPressed(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
@@ -205,9 +202,11 @@ namespace BookClub
             int rowHandle = gridViewBooks.GetSelectedRows()[0];
             var books = gridControlBooks.DataSource as BindingList<Book>;
 
-            var form = new BookViewForm();
-            form.CurrentBook = books[rowHandle];
-            form.ShowDialog();
+            using (var form = new BookViewForm())
+            {
+                form.CurrentBook = books[rowHandle];
+                form.ShowDialog();
+            }
         }
 
         #endregion
@@ -374,23 +373,27 @@ namespace BookClub
 
         private void showAddUserDialog()
         {
-            UserForm form = new UserForm();
-            form.Text = "Add a User";
-            if (form.ShowDialog() == DialogResult.OK)
+            using (UserForm form = new UserForm())
             {
-                Cache.Users.Add(form.CurrentUser);
-                gridViewUsers.LayoutChanged();
+                form.Text = "Add a User";
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Cache.Users.Add(form.CurrentUser);
+                    gridViewUsers.LayoutChanged();
+                }
             }
         }
 
         private void showEditUserDialog(User user)
         {
-            UserForm form = new UserForm();
-            form.Text = "Edit User";
-            form.CurrentUser = user;
-            if (form.ShowDialog() == DialogResult.OK)
+            using (UserForm form = new UserForm())
             {
-                gridViewUsers.UpdateCurrentRow();
+                form.Text = "Edit User";
+                form.CurrentUser = user;
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    gridViewUsers.UpdateCurrentRow();
+                }
             }
         }
 
@@ -483,12 +486,14 @@ namespace BookClub
             var item = sender as DXMenuItem;
             var meeting = item.Tag as Meeting;
 
-            var form = new CommentForm();
-            form.Text = "Add a Comment";
-            if (form.ShowDialog() == DialogResult.OK)
+            using (var form = new CommentForm())
             {
-                var comment = form.CurrentComment;
-                meeting.AddComment(comment);
+                form.Text = "Add a Comment";
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    var comment = form.CurrentComment;
+                    meeting.AddComment(comment);
+                }
             }
         }
 
@@ -497,11 +502,13 @@ namespace BookClub
             var item = sender as DXMenuItem;
             var meeting = item.Tag as Meeting;
 
-            var form = new RecommendationForm();
-            form.Text = "Add a Recommendation";
-            if (form.ShowDialog() == DialogResult.OK)
+            using (var form = new RecommendationForm())
             {
-                // TODO: To be completed...
+                form.Text = "Add a Recommendation";
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // TODO: To be completed...
+                }
             }
         }
 
@@ -546,25 +553,29 @@ namespace BookClub
 
         private void showAddMeetingDialog()
         {
-            var form = new MeetingForm();
-            form.Text = "Add a Meeting";
-            if (form.ShowDialog() == DialogResult.OK)
+            using (var form = new MeetingForm())
             {
-                Cache.Meetings.Add(form.CurrentMeeting);
-                gridViewMeetings.LayoutChanged();
-                UpdateNextMeeting();
+                form.Text = "Add a Meeting";
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Cache.Meetings.Add(form.CurrentMeeting);
+                    gridViewMeetings.LayoutChanged();
+                    UpdateNextMeeting();
+                }
             }
         }
 
         private void showEditMeetingDialog(Meeting meeting)
         {
-            var form = new MeetingForm();
-            form.Text = "Edit Meeting";
-            form.CurrentMeeting = meeting;
-            if (form.ShowDialog() == DialogResult.OK)
+            using (var form = new MeetingForm())
             {
-                gridViewMeetings.UpdateCurrentRow();
-                UpdateNextMeeting();
+                form.Text = "Edit Meeting";
+                form.CurrentMeeting = meeting;
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    gridViewMeetings.UpdateCurrentRow();
+                    UpdateNextMeeting();
+                }
             }
         }
 

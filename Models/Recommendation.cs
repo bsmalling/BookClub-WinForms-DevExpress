@@ -83,6 +83,11 @@ namespace BookClub.Models
             return (Id.ToString() + MeetingId.ToString()).GetHashCode();
         }
 
+        public override string ToString()
+        {
+            return Book.Title;
+        }
+
         ///<summary>
         ///This method should only be called by the RecommendationService class!
         ///</summary>

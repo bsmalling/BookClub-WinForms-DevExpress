@@ -132,6 +132,17 @@ namespace BookClub.Models
             }
         }
 
+        public void AddRecommendationt(Recommendation recommendation)
+        {
+            recommendation.Status = ChangeStatus.New;
+            m_recommendations.Add(recommendation);
+        }
+
+        public void DeleteRecommendation(Recommendation recommendation)
+        {
+            recommendation.Status = ChangeStatus.Deleted;
+        }
+
         ///<summary>
         ///This method should only be called by the MeetingService class!
         ///</summary>
