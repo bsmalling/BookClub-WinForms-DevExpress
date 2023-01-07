@@ -15,6 +15,10 @@ namespace BookClub.Models
     public class Meeting : Commentable
     {
 
+        private Book m_book;
+        private User m_host;
+        private Location m_location;
+
         private List<Recommendation> m_recommendations = new List<Recommendation>();
 
         [Key]
@@ -39,11 +43,37 @@ namespace BookClub.Models
 
         // Referenced objects
 
-        public virtual Book Book { get; set; }
+        public virtual Book Book {
+            get {
+                return m_book;
+            }
+            set {
+                m_book = value;
+                BookId = value.Id;
+            }
+        }
 
-        public virtual User Host { get; set; }
+        public virtual User Host {
+            get {
+                return m_host;
+            }
+            set {
+                m_host = value;
+                HostId = value.Id;
+            }
+        }
 
-        public virtual Location Location { get; set; }
+        public virtual Location Location {
+            get
+            {
+                return m_location;
+            }
+            set
+            {
+                m_location = value;
+                LocationId = value.Id;
+            }
+        }
 
         public virtual List<Recommendation> Recommendations
         {

@@ -78,7 +78,11 @@ namespace BookClub
                 form.Text = "Add a new Book";
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
-                    // TODO: To be completed...
+                    form.CurrentBook.Status = ChangeStatus.New;
+                    MainForm.Cache.Books.Add(form.CurrentBook);
+                    comboBoxEditBooks.Properties.Items.Add(form.CurrentBook);
+                    comboBoxEditBooks.SelectedItem = form.CurrentBook;
+                    CurrentMeeting.Book = form.CurrentBook;
                 }
             }
         }
@@ -90,7 +94,11 @@ namespace BookClub
                 form.Text = "Add a new Location";
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
-                    // TODO: To be completed...
+                    form.CurrentLocation.Status = ChangeStatus.New;
+                    MainForm.Cache.Locations.Add(form.CurrentLocation);
+                    comboBoxEditLocations.Properties.Items.Add(form.CurrentLocation);
+                    comboBoxEditLocations.SelectedItem = form.CurrentLocation;
+                    CurrentMeeting.Location = form.CurrentLocation;
                 }
             }
         }

@@ -209,6 +209,82 @@ namespace BookClub
             }
         }
 
+        private void gridViewBooks_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.MenuType == GridMenuType.Row)
+            {
+                var books = view.DataSource as BindingList<Book>;
+                var book = books[e.HitInfo.RowHandle];
+
+                e.Menu.Items.Clear();
+                var items = new DXMenuItem[]
+                {
+                    new DXMenuItem("Edit book...", new EventHandler(OnEditBook)),
+                    new DXMenuItem("Add a new book...", new EventHandler(OnCreateBook)),
+                    new DXMenuItem("Add a comment...", new EventHandler(OnAddBookComment)),
+                    new DXMenuItem("Delete book", new EventHandler(OnDeleteBook))
+                };
+                foreach (var item in items)
+                {
+                    item.Tag = book;
+                    e.Menu.Items.Add(item);
+                }
+            }
+        }
+
+        private void OnEditBook(object sender, EventArgs e)
+        {
+            var item = sender as DXMenuItem;
+            var book = item.Tag as Book;
+            showEditBookDialog(book);
+        }
+
+        private void OnCreateBook(object sender, EventArgs e)
+        {
+            showAddBookDialog();
+        }
+
+        private void OnAddBookComment(object sender, EventArgs e)
+        {
+            var item = sender as DXMenuItem;
+            var book = item.Tag as Book;
+            // showEditBookDialog(book);
+        }
+
+        private void OnDeleteBook(object sender, EventArgs e)
+        {
+            var item = sender as DXMenuItem;
+            var book = item.Tag as Book;
+            // showEditBookDialog(book);
+        }
+
+        private void showEditBookDialog(Book book)
+        {
+            using (var form = new BookForm())
+            {
+                form.Text = "Edit Book";
+                form.CurrentBook = book;
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    gridViewBooks.UpdateCurrentRow();
+                }
+            }
+        }
+
+        private void showAddBookDialog()
+        {
+            using (var form = new BookForm())
+            {
+                form.Text = "Add a Book";
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Cache.Books.Add(form.CurrentBook);
+                    gridViewBooks.LayoutChanged();
+                }
+            }
+        }
+
         #endregion
 
         #region LocationsGrid

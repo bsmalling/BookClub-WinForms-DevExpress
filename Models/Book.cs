@@ -12,6 +12,8 @@ namespace BookClub.Models
     public class Book : Commentable
     {
 
+        private Thumbnail m_thumbnail;
+
         [Key]
         public int Id { get; private set; }
 
@@ -43,7 +45,18 @@ namespace BookClub.Models
 
         // Referenced objects
 
-        public virtual Thumbnail Thumbnail { get; set; }
+        public virtual Thumbnail Thumbnail
+        {
+            get
+            {
+                return m_thumbnail;
+            }
+            set
+            {
+                m_thumbnail = value;
+                ThumbnailId = value.Id;
+            }
+        }
 
         public virtual List<Comment> Comments
         {

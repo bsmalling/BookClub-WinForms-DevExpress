@@ -805,6 +805,7 @@
             this.gridViewBooks.OptionsView.RowAutoHeight = true;
             this.gridViewBooks.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colTitle, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridViewBooks.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridViewBooks_PopupMenuShowing);
             this.gridViewBooks.RowDeleted += new DevExpress.Data.RowDeletedEventHandler(this.gridViewBooks_RowDeleted);
             this.gridViewBooks.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridViewBooks_RowUpdated);
             this.gridViewBooks.DoubleClick += new System.EventHandler(this.gridViewBooks_DoubleClick);

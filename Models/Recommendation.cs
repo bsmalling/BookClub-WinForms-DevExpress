@@ -11,6 +11,10 @@ namespace BookClub.Models
     public class Recommendation : Commentable
     {
 
+        private Meeting m_meeting;
+        private Book m_book;
+        private User m_user;
+
         [Key]
         public int Id { get; private set; }
 
@@ -30,12 +34,43 @@ namespace BookClub.Models
 
         // Referenced objects
 
-        public virtual Meeting Meeting { get; set; }
+        public virtual Meeting Meeting
+        {
+            get {
+                return m_meeting;
+            }
+            set {
+                m_meeting = value;
+                MeetingId = value.Id;
+            }
+        }
 
-        public virtual Book Book { get; set; }
+        public virtual Book Book
+        {
+            get
+            {
+                return m_book;
+            }
+            set
+            {
+                m_book = value;
+                BookId = value.Id;
+            }
+        }
 
-        public virtual User User { get; set; }
-
+        public virtual User User
+        {
+            get
+            {
+                return m_user;
+            }
+            set
+            {
+                m_user = value;
+                UserId = value.Id;
+            }
+        }
+        
         public virtual List<Comment> Comments
         {
             get
@@ -49,7 +84,6 @@ namespace BookClub.Models
         }
 
         // Methods
-
 
         public Recommendation(int id)
         {

@@ -8,12 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BookClub.Models;
 
 namespace BookClub
 {
 
     public partial class BookForm : Form
     {
+
+        public Book CurrentBook { get; set; }
 
         private Color m_foreColor;
         private const string c_authorHint = "Last name, First name";
@@ -23,15 +26,29 @@ namespace BookClub
         public BookForm()
         {
             InitializeComponent();
+            m_foreColor = textEditAuthor.ForeColor;
         }
 
         private void BookForm_Load(object sender, EventArgs e)
         {
-            m_foreColor = textEditAuthor.ForeColor;
+            if (CurrentBook == null)
+            {
+                CurrentBook = new Book(-1);
+            }
+            else
+            {
+                textEditTitle.Text = CurrentBook.Title;
+                textEditAuthor.Text = CurrentBook.Author;
+                memoExEditDescription.Text = CurrentBook.Description;
+                spinEditPages.Value = CurrentBook.Pages ?? 0;
+                textEditISBN.Text = CurrentBook.ISBN;
+                textEditASIN.Text = CurrentBook.ASIN;
+                dateEditPublished.DateTime = CurrentBook.Published;
+            }
+            
             ShowTextEditHint(textEditAuthor, c_authorHint);
             ShowTextEditHint(textEditISBN, c_isbnHint);
             ShowTextEditHint(textEditASIN, c_asinHint);
-            dateEditPublished.EditValue = DateTime.Now;
         }
 
         private void ShowTextEditHint(TextEdit editor, string hint)
