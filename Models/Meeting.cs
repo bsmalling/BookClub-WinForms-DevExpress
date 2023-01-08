@@ -162,7 +162,7 @@ namespace BookClub.Models
             }
         }
 
-        public void AddRecommendationt(Recommendation recommendation)
+        public void AddRecommendation(Recommendation recommendation)
         {
             recommendation.Status = ChangeStatus.New;
             m_recommendations.Add(recommendation);

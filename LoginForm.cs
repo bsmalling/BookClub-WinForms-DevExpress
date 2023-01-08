@@ -22,6 +22,8 @@ namespace BookClub
         public string Username { get; private set; }
         public User CurrentUser { get; private set; }
 
+        private int m_loginAttempts = 0;
+
         public LoginForm()
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace BookClub
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            m_loginAttempts += 1;
             var username = textBoxUsername.Text;
             var password = textBoxPassword.Text;
 
@@ -54,9 +57,19 @@ namespace BookClub
                     }
                 }
             }
+
             labelInvalidLogin.Visible = true;
+            textBoxPassword.Focus();
+            textBoxPassword.Select(0, textBoxPassword.Text.Length);
+
+            if (m_loginAttempts >= 3)
+            {
+                DialogResult = DialogResult.Cancel;
+                Close();
+            }
             CurrentUser = null;
         }
 
     }
+
 }

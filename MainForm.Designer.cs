@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode4 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.gridViewMeetingRecs = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnBook = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,12 +58,16 @@
             this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageHome = new DevExpress.XtraTab.XtraTabPage();
             this.xtraScrollableControlMain = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.simpleButtonRecommend = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButtonRSVP = new DevExpress.XtraEditors.SimpleButton();
             this.panelControlNoMeetings = new DevExpress.XtraEditors.PanelControl();
             this.simpleButtonAddMeeting = new DevExpress.XtraEditors.SimpleButton();
             this.labelControlNoMeetings = new DevExpress.XtraEditors.LabelControl();
             this.tablePanelNextMeeting = new DevExpress.Utils.Layout.TablePanel();
-            this.labelControlAuthor = new DevExpress.XtraEditors.LabelControl();
+            this.separatorControl2 = new DevExpress.XtraEditors.SeparatorControl();
+            this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.labelControlCityStateZip = new DevExpress.XtraEditors.LabelControl();
+            this.labelControlAuthor = new DevExpress.XtraEditors.LabelControl();
             this.labelControlAddress2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControlAddress1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControlHostname = new DevExpress.XtraEditors.LabelControl();
@@ -120,6 +124,8 @@
             this.panelControlNoMeetings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanelNextMeeting)).BeginInit();
             this.tablePanelNextMeeting.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.xtraTabPageMeetings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMeetingComments)).BeginInit();
@@ -178,13 +184,13 @@
             // 
             this.gridControlMeetings.DataSource = typeof(BookClub.Models.Meeting);
             this.gridControlMeetings.Dock = System.Windows.Forms.DockStyle.Right;
-            gridLevelNode1.LevelTemplate = this.gridViewMeetingRecs;
-            gridLevelNode1.RelationName = "Recommendations";
-            gridLevelNode2.LevelTemplate = this.gridViewMeetingComs;
-            gridLevelNode2.RelationName = "Comments";
+            gridLevelNode3.LevelTemplate = this.gridViewMeetingRecs;
+            gridLevelNode3.RelationName = "Recommendations";
+            gridLevelNode4.LevelTemplate = this.gridViewMeetingComs;
+            gridLevelNode4.RelationName = "Comments";
             this.gridControlMeetings.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1,
-            gridLevelNode2});
+            gridLevelNode3,
+            gridLevelNode4});
             this.gridControlMeetings.Location = new System.Drawing.Point(0, 0);
             this.gridControlMeetings.MainView = this.gridViewMeetings;
             this.gridControlMeetings.Name = "gridControlMeetings";
@@ -413,6 +419,8 @@
             // 
             // xtraScrollableControlMain
             // 
+            this.xtraScrollableControlMain.Controls.Add(this.simpleButtonRecommend);
+            this.xtraScrollableControlMain.Controls.Add(this.simpleButtonRSVP);
             this.xtraScrollableControlMain.Controls.Add(this.panelControlNoMeetings);
             this.xtraScrollableControlMain.Controls.Add(this.tablePanelNextMeeting);
             this.xtraScrollableControlMain.Controls.Add(this.labelGreeting);
@@ -422,11 +430,35 @@
             this.xtraScrollableControlMain.Size = new System.Drawing.Size(861, 586);
             this.xtraScrollableControlMain.TabIndex = 1;
             // 
+            // simpleButtonRecommend
+            // 
+            this.simpleButtonRecommend.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.simpleButtonRecommend.ImageOptions.Image = global::BookClub.Properties.Resources.recommendation;
+            this.simpleButtonRecommend.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.simpleButtonRecommend.Location = new System.Drawing.Point(768, 503);
+            this.simpleButtonRecommend.Name = "simpleButtonRecommend";
+            this.simpleButtonRecommend.Size = new System.Drawing.Size(80, 80);
+            this.simpleButtonRecommend.TabIndex = 16;
+            this.simpleButtonRecommend.ToolTip = "Recommend a book for this meeting.";
+            this.simpleButtonRecommend.Click += new System.EventHandler(this.simpleButtonRecommend_Click);
+            // 
+            // simpleButtonRSVP
+            // 
+            this.simpleButtonRSVP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.simpleButtonRSVP.ImageOptions.Image = global::BookClub.Properties.Resources.rsvp;
+            this.simpleButtonRSVP.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.simpleButtonRSVP.Location = new System.Drawing.Point(666, 503);
+            this.simpleButtonRSVP.Name = "simpleButtonRSVP";
+            this.simpleButtonRSVP.Size = new System.Drawing.Size(80, 80);
+            this.simpleButtonRSVP.TabIndex = 15;
+            this.simpleButtonRSVP.ToolTip = "Will you be attending or not?";
+            this.simpleButtonRSVP.Click += new System.EventHandler(this.simpleButtonRSVP_Click);
+            // 
             // panelControlNoMeetings
             // 
             this.panelControlNoMeetings.Controls.Add(this.simpleButtonAddMeeting);
             this.panelControlNoMeetings.Controls.Add(this.labelControlNoMeetings);
-            this.panelControlNoMeetings.Location = new System.Drawing.Point(130, 159);
+            this.panelControlNoMeetings.Location = new System.Drawing.Point(130, 107);
             this.panelControlNoMeetings.Name = "panelControlNoMeetings";
             this.panelControlNoMeetings.Size = new System.Drawing.Size(718, 90);
             this.panelControlNoMeetings.TabIndex = 5;
@@ -457,8 +489,10 @@
             this.tablePanelNextMeeting.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 9.08F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50.92F)});
-            this.tablePanelNextMeeting.Controls.Add(this.labelControlAuthor);
+            this.tablePanelNextMeeting.Controls.Add(this.separatorControl2);
+            this.tablePanelNextMeeting.Controls.Add(this.separatorControl1);
             this.tablePanelNextMeeting.Controls.Add(this.labelControlCityStateZip);
+            this.tablePanelNextMeeting.Controls.Add(this.labelControlAuthor);
             this.tablePanelNextMeeting.Controls.Add(this.labelControlAddress2);
             this.tablePanelNextMeeting.Controls.Add(this.labelControlAddress1);
             this.tablePanelNextMeeting.Controls.Add(this.labelControlHostname);
@@ -479,10 +513,46 @@
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanelNextMeeting.Size = new System.Drawing.Size(744, 230);
+            this.tablePanelNextMeeting.Size = new System.Drawing.Size(744, 255);
             this.tablePanelNextMeeting.TabIndex = 3;
             this.tablePanelNextMeeting.UseSkinIndents = true;
+            // 
+            // separatorControl2
+            // 
+            this.tablePanelNextMeeting.SetColumn(this.separatorControl2, 1);
+            this.separatorControl2.Location = new System.Drawing.Point(122, 116);
+            this.separatorControl2.Name = "separatorControl2";
+            this.separatorControl2.Padding = new System.Windows.Forms.Padding(0, 9, 9, 9);
+            this.tablePanelNextMeeting.SetRow(this.separatorControl2, 4);
+            this.separatorControl2.Size = new System.Drawing.Size(609, 22);
+            this.separatorControl2.TabIndex = 14;
+            // 
+            // separatorControl1
+            // 
+            this.tablePanelNextMeeting.SetColumn(this.separatorControl1, 1);
+            this.separatorControl1.Location = new System.Drawing.Point(122, 38);
+            this.separatorControl1.Name = "separatorControl1";
+            this.separatorControl1.Padding = new System.Windows.Forms.Padding(0, 9, 9, 9);
+            this.tablePanelNextMeeting.SetRow(this.separatorControl1, 1);
+            this.separatorControl1.Size = new System.Drawing.Size(609, 22);
+            this.separatorControl1.TabIndex = 13;
+            // 
+            // labelControlCityStateZip
+            // 
+            this.labelControlCityStateZip.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlCityStateZip.Appearance.ForeColor = System.Drawing.Color.MediumBlue;
+            this.labelControlCityStateZip.Appearance.Options.UseFont = true;
+            this.labelControlCityStateZip.Appearance.Options.UseForeColor = true;
+            this.tablePanelNextMeeting.SetColumn(this.labelControlCityStateZip, 1);
+            this.labelControlCityStateZip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelControlCityStateZip.Location = new System.Drawing.Point(122, 220);
+            this.labelControlCityStateZip.Name = "labelControlCityStateZip";
+            this.tablePanelNextMeeting.SetRow(this.labelControlCityStateZip, 8);
+            this.labelControlCityStateZip.Size = new System.Drawing.Size(609, 22);
+            this.labelControlCityStateZip.TabIndex = 12;
+            this.labelControlCityStateZip.Text = "City, State, Zip";
             // 
             // labelControlAuthor
             // 
@@ -490,35 +560,24 @@
             this.labelControlAuthor.Appearance.Options.UseFont = true;
             this.tablePanelNextMeeting.SetColumn(this.labelControlAuthor, 0);
             this.labelControlAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControlAuthor.Location = new System.Drawing.Point(13, 64);
+            this.labelControlAuthor.Location = new System.Drawing.Point(13, 90);
             this.labelControlAuthor.Name = "labelControlAuthor";
-            this.tablePanelNextMeeting.SetRow(this.labelControlAuthor, 2);
+            this.tablePanelNextMeeting.SetRow(this.labelControlAuthor, 3);
             this.labelControlAuthor.Size = new System.Drawing.Size(105, 22);
             this.labelControlAuthor.TabIndex = 11;
             this.labelControlAuthor.Text = "Author:";
             // 
-            // labelControlCityStateZip
-            // 
-            this.labelControlCityStateZip.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControlCityStateZip.Appearance.Options.UseFont = true;
-            this.tablePanelNextMeeting.SetColumn(this.labelControlCityStateZip, 1);
-            this.labelControlCityStateZip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControlCityStateZip.Location = new System.Drawing.Point(122, 168);
-            this.labelControlCityStateZip.Name = "labelControlCityStateZip";
-            this.tablePanelNextMeeting.SetRow(this.labelControlCityStateZip, 6);
-            this.labelControlCityStateZip.Size = new System.Drawing.Size(609, 22);
-            this.labelControlCityStateZip.TabIndex = 10;
-            this.labelControlCityStateZip.Text = "City, State, Zip";
-            // 
             // labelControlAddress2
             // 
             this.labelControlAddress2.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlAddress2.Appearance.ForeColor = System.Drawing.Color.MediumBlue;
             this.labelControlAddress2.Appearance.Options.UseFont = true;
+            this.labelControlAddress2.Appearance.Options.UseForeColor = true;
             this.tablePanelNextMeeting.SetColumn(this.labelControlAddress2, 1);
             this.labelControlAddress2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControlAddress2.Location = new System.Drawing.Point(122, 142);
+            this.labelControlAddress2.Location = new System.Drawing.Point(122, 194);
             this.labelControlAddress2.Name = "labelControlAddress2";
-            this.tablePanelNextMeeting.SetRow(this.labelControlAddress2, 5);
+            this.tablePanelNextMeeting.SetRow(this.labelControlAddress2, 7);
             this.labelControlAddress2.Size = new System.Drawing.Size(609, 22);
             this.labelControlAddress2.TabIndex = 9;
             this.labelControlAddress2.Text = "Address2";
@@ -526,12 +585,14 @@
             // labelControlAddress1
             // 
             this.labelControlAddress1.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlAddress1.Appearance.ForeColor = System.Drawing.Color.MediumBlue;
             this.labelControlAddress1.Appearance.Options.UseFont = true;
+            this.labelControlAddress1.Appearance.Options.UseForeColor = true;
             this.tablePanelNextMeeting.SetColumn(this.labelControlAddress1, 1);
             this.labelControlAddress1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControlAddress1.Location = new System.Drawing.Point(122, 116);
+            this.labelControlAddress1.Location = new System.Drawing.Point(122, 168);
             this.labelControlAddress1.Name = "labelControlAddress1";
-            this.tablePanelNextMeeting.SetRow(this.labelControlAddress1, 4);
+            this.tablePanelNextMeeting.SetRow(this.labelControlAddress1, 6);
             this.labelControlAddress1.Size = new System.Drawing.Size(609, 22);
             this.labelControlAddress1.TabIndex = 8;
             this.labelControlAddress1.Text = "Address1";
@@ -539,12 +600,14 @@
             // labelControlHostname
             // 
             this.labelControlHostname.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlHostname.Appearance.ForeColor = System.Drawing.Color.MediumBlue;
             this.labelControlHostname.Appearance.Options.UseFont = true;
+            this.labelControlHostname.Appearance.Options.UseForeColor = true;
             this.tablePanelNextMeeting.SetColumn(this.labelControlHostname, 1);
             this.labelControlHostname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControlHostname.Location = new System.Drawing.Point(122, 90);
+            this.labelControlHostname.Location = new System.Drawing.Point(122, 142);
             this.labelControlHostname.Name = "labelControlHostname";
-            this.tablePanelNextMeeting.SetRow(this.labelControlHostname, 3);
+            this.tablePanelNextMeeting.SetRow(this.labelControlHostname, 5);
             this.labelControlHostname.Size = new System.Drawing.Size(609, 22);
             this.labelControlHostname.TabIndex = 7;
             this.labelControlHostname.Text = "Host";
@@ -552,20 +615,24 @@
             // labelControlBookAuthor
             // 
             this.labelControlBookAuthor.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlBookAuthor.Appearance.ForeColor = System.Drawing.Color.MediumBlue;
             this.labelControlBookAuthor.Appearance.Options.UseFont = true;
+            this.labelControlBookAuthor.Appearance.Options.UseForeColor = true;
             this.tablePanelNextMeeting.SetColumn(this.labelControlBookAuthor, 1);
             this.labelControlBookAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControlBookAuthor.Location = new System.Drawing.Point(122, 64);
+            this.labelControlBookAuthor.Location = new System.Drawing.Point(122, 90);
             this.labelControlBookAuthor.Name = "labelControlBookAuthor";
-            this.tablePanelNextMeeting.SetRow(this.labelControlBookAuthor, 2);
+            this.tablePanelNextMeeting.SetRow(this.labelControlBookAuthor, 3);
             this.labelControlBookAuthor.Size = new System.Drawing.Size(609, 22);
             this.labelControlBookAuthor.TabIndex = 6;
             this.labelControlBookAuthor.Text = "Author";
             // 
             // labelControlMeetingTime
             // 
-            this.labelControlMeetingTime.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlMeetingTime.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlMeetingTime.Appearance.ForeColor = System.Drawing.Color.MediumBlue;
             this.labelControlMeetingTime.Appearance.Options.UseFont = true;
+            this.labelControlMeetingTime.Appearance.Options.UseForeColor = true;
             this.labelControlMeetingTime.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.tablePanelNextMeeting.SetColumn(this.labelControlMeetingTime, 1);
             this.labelControlMeetingTime.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -582,9 +649,9 @@
             this.labelControlHost.Appearance.Options.UseFont = true;
             this.tablePanelNextMeeting.SetColumn(this.labelControlHost, 0);
             this.labelControlHost.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControlHost.Location = new System.Drawing.Point(13, 90);
+            this.labelControlHost.Location = new System.Drawing.Point(13, 142);
             this.labelControlHost.Name = "labelControlHost";
-            this.tablePanelNextMeeting.SetRow(this.labelControlHost, 3);
+            this.tablePanelNextMeeting.SetRow(this.labelControlHost, 5);
             this.labelControlHost.Size = new System.Drawing.Size(105, 22);
             this.labelControlHost.TabIndex = 4;
             this.labelControlHost.Text = "Host:";
@@ -595,9 +662,9 @@
             this.labelControlLocation.Appearance.Options.UseFont = true;
             this.tablePanelNextMeeting.SetColumn(this.labelControlLocation, 0);
             this.labelControlLocation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControlLocation.Location = new System.Drawing.Point(13, 116);
+            this.labelControlLocation.Location = new System.Drawing.Point(13, 168);
             this.labelControlLocation.Name = "labelControlLocation";
-            this.tablePanelNextMeeting.SetRow(this.labelControlLocation, 4);
+            this.tablePanelNextMeeting.SetRow(this.labelControlLocation, 6);
             this.labelControlLocation.Size = new System.Drawing.Size(105, 22);
             this.labelControlLocation.TabIndex = 3;
             this.labelControlLocation.Text = "Location:";
@@ -605,12 +672,14 @@
             // labelControlBookTitle
             // 
             this.labelControlBookTitle.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlBookTitle.Appearance.ForeColor = System.Drawing.Color.MediumBlue;
             this.labelControlBookTitle.Appearance.Options.UseFont = true;
+            this.labelControlBookTitle.Appearance.Options.UseForeColor = true;
             this.tablePanelNextMeeting.SetColumn(this.labelControlBookTitle, 1);
             this.labelControlBookTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControlBookTitle.Location = new System.Drawing.Point(122, 38);
+            this.labelControlBookTitle.Location = new System.Drawing.Point(122, 64);
             this.labelControlBookTitle.Name = "labelControlBookTitle";
-            this.tablePanelNextMeeting.SetRow(this.labelControlBookTitle, 1);
+            this.tablePanelNextMeeting.SetRow(this.labelControlBookTitle, 2);
             this.labelControlBookTitle.Size = new System.Drawing.Size(609, 22);
             this.labelControlBookTitle.TabIndex = 2;
             this.labelControlBookTitle.Text = "Title";
@@ -621,9 +690,9 @@
             this.labelControlBook.Appearance.Options.UseFont = true;
             this.tablePanelNextMeeting.SetColumn(this.labelControlBook, 0);
             this.labelControlBook.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControlBook.Location = new System.Drawing.Point(13, 38);
+            this.labelControlBook.Location = new System.Drawing.Point(13, 64);
             this.labelControlBook.Name = "labelControlBook";
-            this.tablePanelNextMeeting.SetRow(this.labelControlBook, 1);
+            this.tablePanelNextMeeting.SetRow(this.labelControlBook, 2);
             this.labelControlBook.Size = new System.Drawing.Size(105, 22);
             this.labelControlBook.TabIndex = 1;
             this.labelControlBook.Text = "Book:";
@@ -971,6 +1040,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanelNextMeeting)).EndInit();
             this.tablePanelNextMeeting.ResumeLayout(false);
             this.tablePanelNextMeeting.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.xtraTabPageMeetings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMeetingComments)).EndInit();
@@ -1041,7 +1112,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colLocation;
         private DevExpress.XtraGrid.Columns.GridColumn colDescription2;
         private DevExpress.Utils.Layout.TablePanel tablePanelNextMeeting;
-        private DevExpress.XtraEditors.LabelControl labelControlCityStateZip;
         private DevExpress.XtraEditors.LabelControl labelControlAddress2;
         private DevExpress.XtraEditors.LabelControl labelControlAddress1;
         private DevExpress.XtraEditors.LabelControl labelControlHostname;
@@ -1066,6 +1136,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnComDate;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnComText;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnComUser;
+        private DevExpress.XtraEditors.LabelControl labelControlCityStateZip;
+        private DevExpress.XtraEditors.SeparatorControl separatorControl2;
+        private DevExpress.XtraEditors.SeparatorControl separatorControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonRSVP;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonRecommend;
     }
 }
 

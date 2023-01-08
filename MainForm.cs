@@ -24,6 +24,7 @@ namespace BookClub
 
         public static User CurrentUser { get; private set; }
         public static ModelCache Cache { get; private set; }
+        private Meeting m_nextMeeting = null;
 
         public MainForm(User user)
         {
@@ -77,32 +78,35 @@ namespace BookClub
 
         private void UpdateNextMeeting()
         {
-            var meeting = GetNextMeeting(Cache.Meetings);
-            if (meeting == null)
+            m_nextMeeting = GetNextMeeting(Cache.Meetings);
+            if (m_nextMeeting == null)
             {
                 panelControlNoMeetings.Visible = true;
                 tablePanelNextMeeting.Visible = false;
+                simpleButtonRSVP.Visible = false;
             }
             else
             {
                 panelControlNoMeetings.Visible = false;
                 tablePanelNextMeeting.Visible = true;
-                labelControlMeetingTime.Text = meeting.MeetTime.ToString("dddd, MMMM d, yyyy @ h:mm tt");
-                labelControlHostname.Text = meeting.Host.FullName;
-                labelControlBookTitle.Text = meeting.Book.Title;
-                labelControlBookAuthor.Text = meeting.Book.Author;
-                labelControlAddress1.Text = meeting.Location.Address1;
+                simpleButtonRSVP.Visible = true;
 
-                var cityStateZip = meeting.Location.City + ", " +
-                    meeting.Location.State + "  " + (meeting.Location.Zip ?? String.Empty);
-                if (meeting.Location.Address2 == null)
+                labelControlMeetingTime.Text = m_nextMeeting.MeetTime.ToString("dddd, MMMM d, yyyy @ h:mm tt");
+                labelControlHostname.Text = m_nextMeeting.Host.FullName;
+                labelControlBookTitle.Text = m_nextMeeting.Book.Title;
+                labelControlBookAuthor.Text = m_nextMeeting.Book.Author;
+                labelControlAddress1.Text = m_nextMeeting.Location.Address1;
+
+                var cityStateZip = m_nextMeeting.Location.City + ", " +
+                    m_nextMeeting.Location.State + "  " + (m_nextMeeting.Location.Zip ?? String.Empty);
+                if (m_nextMeeting.Location.Address2 == null)
                 {
                     labelControlAddress2.Text = cityStateZip;
                     labelControlCityStateZip.Text = string.Empty;
                 }
                 else
                 {
-                    labelControlAddress2.Text = meeting.Location.Address2;
+                    labelControlAddress2.Text = m_nextMeeting.Location.Address2;
                     labelControlCityStateZip.Text = cityStateZip;
                 }
             }
@@ -657,6 +661,32 @@ namespace BookClub
 
         #endregion
 
+        private void simpleButtonRSVP_Click(object sender, EventArgs e)
+        {
+            using (var form = new CommentForm())
+            {
+                form.Text = "RSVP to Meeting";
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    var comment = form.CurrentComment;
+                    m_nextMeeting.AddComment(comment);
+                }
+            }
+        }
+
+        private void simpleButtonRecommend_Click(object sender, EventArgs e)
+        {
+            using (var form = new RecommendationForm())
+            {
+                form.Text = "Recommend a Book";
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    var recommendation = form.CurrentRecommendation;
+                    m_nextMeeting.AddRecommendation(recommendation);
+                }
+            }
+
+        }
     }
 
 }

@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BookClub.Models;
 
 namespace BookClub
 {
 
     public partial class RecommendationForm : Form
     {
+        public Recommendation CurrentRecommendation { get; set; }
 
         private Color m_foreColor;
         private const string c_commentHint = "(Optional)";
