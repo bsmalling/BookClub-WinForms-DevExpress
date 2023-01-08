@@ -39,7 +39,8 @@ namespace BookClub
             labelControlISBNValue.Text = CurrentBook.ISBN ?? "-";
             labelControlASINValue.Text = CurrentBook.ASIN ?? "-";
             labelControlPublishedValue.Text = CurrentBook.Published.ToString("MMMM d, yyyy");
-
+            memoEditDescription.Text = CurrentBook.Description;
+            
             if (CurrentBook.Thumbnail?.ImageObj != null)
                 pictureEditCover.Image = CurrentBook.Thumbnail.ImageObj;
 

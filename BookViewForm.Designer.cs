@@ -48,12 +48,16 @@
             this.colText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.pictureEditCover = new DevExpress.XtraEditors.PictureEdit();
+            this.separatorControl2 = new DevExpress.XtraEditors.SeparatorControl();
+            this.memoEditDescription = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlComments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewComments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEditCover.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEditDescription.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControlTitle
@@ -148,7 +152,7 @@
             // 
             // separatorControl1
             // 
-            this.separatorControl1.Location = new System.Drawing.Point(2, 83);
+            this.separatorControl1.Location = new System.Drawing.Point(2, 90);
             this.separatorControl1.Name = "separatorControl1";
             this.separatorControl1.Size = new System.Drawing.Size(797, 20);
             this.separatorControl1.TabIndex = 11;
@@ -156,7 +160,7 @@
             // gridControlComments
             // 
             this.gridControlComments.DataSource = typeof(BookClub.Models.Comment);
-            this.gridControlComments.Location = new System.Drawing.Point(12, 128);
+            this.gridControlComments.Location = new System.Drawing.Point(12, 225);
             this.gridControlComments.MainView = this.gridViewComments;
             this.gridControlComments.Name = "gridControlComments";
             this.gridControlComments.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -235,11 +239,29 @@
             this.pictureEditCover.Size = new System.Drawing.Size(60, 84);
             this.pictureEditCover.TabIndex = 14;
             // 
+            // separatorControl2
+            // 
+            this.separatorControl2.Location = new System.Drawing.Point(2, 121);
+            this.separatorControl2.Name = "separatorControl2";
+            this.separatorControl2.Size = new System.Drawing.Size(797, 20);
+            this.separatorControl2.TabIndex = 15;
+            // 
+            // memoEditDescription
+            // 
+            this.memoEditDescription.Location = new System.Drawing.Point(12, 142);
+            this.memoEditDescription.Name = "memoEditDescription";
+            this.memoEditDescription.Properties.ReadOnly = true;
+            this.memoEditDescription.Size = new System.Drawing.Size(776, 71);
+            this.memoEditDescription.TabIndex = 16;
+            this.memoEditDescription.TabStop = false;
+            // 
             // BookViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 550);
+            this.Controls.Add(this.memoEditDescription);
+            this.Controls.Add(this.separatorControl2);
             this.Controls.Add(this.pictureEditCover);
             this.Controls.Add(this.gridControlComments);
             this.Controls.Add(this.separatorControl1);
@@ -266,6 +288,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewComments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEditCover.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEditDescription.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,5 +316,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colText;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         private DevExpress.XtraEditors.PictureEdit pictureEditCover;
+        private DevExpress.XtraEditors.SeparatorControl separatorControl2;
+        private DevExpress.XtraEditors.MemoEdit memoEditDescription;
     }
 }
